@@ -1,16 +1,17 @@
-import {Router } from "express";
-import {GreetingRoute }  from "./greeting.route";
+import { Router } from "express";
+import { GreetingRoute } from "./greeting.route";
 import { CustomerRoute } from "./customer.route";
+import { UserRoute } from "./user.route";
 
 export class Routes{
     public router:Router;
     private static instance:Routes;
-   
+
     public static getInstance():Routes{
-      if(!Routes.instance){
-      Routes.instance = new Routes();
-      }
-      return Routes.instance;
+        if(!Routes.instance){
+            Routes.instance = new Routes();
+        }
+        return Routes.instance;
     }
 
     private constructor(){
@@ -21,5 +22,7 @@ export class Routes{
     setupRoutes(){
         this.router.use("/greeting", GreetingRoute.getInstance().router);
         this.router.use("/customer", CustomerRoute.getInstance().router);
-    }  
+        this.router.use("/user", UserRoute.getInstance().router);
+    }
+
 }
